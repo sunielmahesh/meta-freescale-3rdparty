@@ -1,0 +1,36 @@
+From a5fb09a7834e3c6276a993c4ee9852b865d67b0c Mon Sep 17 00:00:00 2001
+From: Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
+Date: Mon, 8 May 2023 13:05:49 +0530
+Subject: [PATCH 2/2] dt-bindings: arm: fsl: Add Engicam i.Core MX8M Plus
+ C.TOUCH 2.0 10.1" OF
+
+i.Core MX8M Plus is an EDIMM SoM based on NXP i.MX8M Plus from Engicam.
+
+C.TOUCH 2.0 is a general purpose carrier board with capacitive
+touch interface support.
+
+10.1" OF is a capacitive touch 10.1" Open Frame panel solutions.
+
+i.Core MX8M Plus needs to mount on top of C.TOUCH 2.0 carrier with pluged
+10.1" OF for creating complete i.Core MX8M Plus C.TOUCH 2.0 10.1" Open Frame.
+
+Signed-off-by: Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 15d411084065..566bfea401cc 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1045,6 +1045,7 @@ properties:
+         items:
+           - enum:
+               - engicam,icore-mx8mp-edimm2.2       # i.MX8MP Engicam i.Core MX8M Plus EDIMM2.2 Starter Kit
++              - engicam,icore-mx8mp-ctouch2-of10   # i.MX8MM Engicam i.Core MX8M Plus C.TOUCH 2.0 10.1" OF
+           - const: engicam,icore-mx8mp             # i.MX8MP Engicam i.Core MX8M Plus SoM
+           - const: fsl,imx8mp
+ 
+-- 
+2.25.1
+
