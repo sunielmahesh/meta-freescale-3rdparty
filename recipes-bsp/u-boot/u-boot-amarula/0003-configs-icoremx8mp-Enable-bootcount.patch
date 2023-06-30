@@ -1,0 +1,56 @@
+From 9b44551fdefa93e07b47bb7fd3611e667a9fd515 Mon Sep 17 00:00:00 2001
+From: Suniel Mahesh <sunil@amarulasolutions.com>
+Date: Wed, 28 Jun 2023 15:43:47 +0530
+Subject: [PATCH 2/2] configs: icoremx8mp: Enable bootcount
+
+Enable bootcount for Engicam i.Core i.MX8M plus Ctouch board.
+
+This would help to use redundant boot where the default system
+will reboot to recovery once bootcount expires with respect to
+bootlimit.
+
+Signed-off-by: Suniel Mahesh <sunil@amarulasolutions.com>
+---
+ configs/imx8mp-icore-mx8mp-ctouch2_defconfig | 4 ++++
+ include/configs/imx8mp_icore_mx8mp.h         | 1 +
+ 2 files changed, 5 insertions(+)
+
+diff --git a/configs/imx8mp-icore-mx8mp-ctouch2_defconfig b/configs/imx8mp-icore-mx8mp-ctouch2_defconfig
+index e953f01ad5..21bb0e78b7 100644
+--- a/configs/imx8mp-icore-mx8mp-ctouch2_defconfig
++++ b/configs/imx8mp-icore-mx8mp-ctouch2_defconfig
+@@ -18,8 +18,11 @@ CONFIG_SYS_PROMPT="u-boot=> "
+ CONFIG_SPL_MMC=y
+ CONFIG_SPL_SERIAL=y
+ CONFIG_SPL_DRIVERS_MISC=y
++CONFIG_BOOTCOUNT_BOOTLIMIT=3
++CONFIG_SYS_BOOTCOUNT_ADDR=0x30390078
+ CONFIG_SPL_STACK=0x960000
+ CONFIG_SPL=y
++CONFIG_SYS_BOOTCOUNT_SINGLEWORD=y
+ CONFIG_SPL_IMX_ROMAPI_LOADADDR=0x48000000
+ CONFIG_SYS_LOAD_ADDR=0x40480000
+ CONFIG_SYS_MONITOR_LEN=524288
+@@ -74,6 +77,7 @@ CONFIG_USE_ETHPRIME=y
+ CONFIG_ETHPRIME="eth1"
+ CONFIG_NET_RANDOM_ETHADDR=y
+ CONFIG_SPL_DM=y
++CONFIG_BOOTCOUNT_LIMIT=y
+ CONFIG_CLK_COMPOSITE_CCF=y
+ CONFIG_CLK_IMX8MP=y
+ CONFIG_MXC_GPIO=y
+diff --git a/include/configs/imx8mp_icore_mx8mp.h b/include/configs/imx8mp_icore_mx8mp.h
+index bbbd91776f..b3358723f6 100644
+--- a/include/configs/imx8mp_icore_mx8mp.h
++++ b/include/configs/imx8mp_icore_mx8mp.h
+@@ -37,6 +37,7 @@
+ 	"console=ttymxc1,115200 earlycon=ec_imx6q,0x30890000,115200\0" \
+ 	"fdt_addr_r=0x43000000\0"			\
+ 	"boot_fdt=try\0" \
++	"bootlimit=3\0" \
+ 	"fdtfile=" CONFIG_DEFAULT_FDT_FILE "\0" \
+ 	"initrd_addr=0x43800000\0"		\
+ 	"bootm_size=0x10000000\0" \
+-- 
+2.25.1
+
