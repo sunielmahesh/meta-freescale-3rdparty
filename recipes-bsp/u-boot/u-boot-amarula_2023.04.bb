@@ -13,6 +13,7 @@ SRCBRANCH = "master"
 SRC_URI = " \
 	git://github.com/u-boot/u-boot.git;branch=${SRCBRANCH};protocol=https \
 	file://0001-i.Core-MX8M-Plus-is-an-SODIMM-SoM-based-on-NXP-i.MX8.patch \
+	file://0002-arm64-dts-Enable-wdog1.patch \
 	"
 
 S = "${WORKDIR}/git"
