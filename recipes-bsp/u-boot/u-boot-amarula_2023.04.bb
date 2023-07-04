@@ -15,6 +15,7 @@ SRC_URI = " \
 	file://0001-i.Core-MX8M-Plus-is-an-SODIMM-SoM-based-on-NXP-i.MX8.patch \
 	file://0002-arm64-dts-Enable-wdog1.patch \
 	file://0003-configs-icoremx8mp-Enable-bootcount.patch \
+        file://0004-disable-wdt-and-add-env.patch \
 	"
 
 S = "${WORKDIR}/git"
