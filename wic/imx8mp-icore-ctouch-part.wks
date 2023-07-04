@@ -5,25 +5,19 @@
 # It uses u-boot
 #
 # The disk layout used is:
-#  - - -------- ------------ -------------- ------------ ------------------------
-# | |  u-boot  |   boot_A   |   rootfs_A   |   boot_B   |   rootfs_B   |  Data  |
-#  - - -------- ------------ -------------- ------------ ------------------------
-# ^ ^          ^            ^              ^            ^              ^        ^
-# | |          |            |              |            |              |        |
-# 0 32KiB     8MiB         8+64MiB       584MiB       648MiB         1160MiB   1224MiB
+#  - - -------- ------------ -------------- ------------ ----------------------------
+# | |  u-boot  |   boot_A   |   boot_B   |   rootfs_A   |   rootfs_B   |  Data       |
+#  - - -------- ------------ -------------- ------------ ----------------------------
+# ^ ^          ^            ^            ^              ^              ^             ^
+# | |          |            |            |              |              |             |
+# 0 32KiB     8MiB         8+64MiB      8+64+64MiB   136+512MiB      648+512MiB   1160+512MiB
 #
 
 part u-boot --source rawcopy --sourceparams="file=flash.bin-${MACHINE}-sd" --ondisk mmcblk0 --no-table --align 32
 
-# Partitions boot_A | rootfs_A
-part --source bootimg-partition --ondisk mmcblk0 --fstype=vfat --label boota --active --align 8192 --fixed-size 64
-part / --source rootfs --ondisk mmcblk0 --fstype=ext4 --label rootfsa --align 8192 --fixed-size 512
-
-# Partitions boot_B | rootfs_B
-part --source bootimg-partition --ondisk mmcblk0 --fstype=vfat --label bootb --active --align 8192 --fixed-size 64
-part / --source rootfs --ondisk mmcblk0 --fstype=ext4 --label rootfsb --align 8192 --fixed-size 512
-
-part / --source rootfs --rootfs-dir=${IMAGE_ROOTFS}/home --ondisk mmcblk0 --fstype=ext4 --label data --align 8192 --size 64
-
-bootloader --ptable gpt
-
+# Partitions boot_A, boot_B, rootfs_A, roofs_B, Data
+part --source bootimg-partition --ondisk mmcblk0 --fstype=vfat --label boota --active --align 8192 --size 64M --extra-space 0
+part --source bootimg-partition --ondisk mmcblk0 --fstype=vfat --label bootb --align 4096 --size 64M --extra-space 0
+part / --source rootfs --ondisk mmcblk0 --fstype=ext4 --label rootfsa --align 4 --size 512
+part / --source rootfs --ondisk mmcblk0 --fstype=ext4 --label rootfsb --align 4 --size 512
+part --source rootfs --rootfs-dir=${IMAGE_ROOTFS}/home --ondisk mmcblk0 --fstype=ext4 --label data --align 4 --size 512
