@@ -1,0 +1,42 @@
+From c5da11f9c5c484b0d13b28f9807c2fafc80845f6 Mon Sep 17 00:00:00 2001
+From: Suniel Mahesh <sunil@amarulasolutions.com>
+Date: Wed, 5 Jul 2023 13:43:50 +0530
+Subject: [PATCH] arm64: dts: imx8mp-icore: Enable wdog1 node
+
+Signed-off-by: Suniel Mahesh <sunil@amarulasolutions.com>
+---
+ .../freescale/imx8mp-icore-mx8mp-ctouch2-of10.dts   | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-ctouch2-of10.dts b/arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-ctouch2-of10.dts
+index 1e435b2137c9..4138c4451f0e 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-ctouch2-of10.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-ctouch2-of10.dts
+@@ -169,6 +169,13 @@ &usdhc2 {
+ 	status = "okay";
+ };
+ 
++&wdog1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_wdog>;
++	fsl,ext-reset-output;
++	status = "okay";
++};
++
+ &iomuxc {
+ 	pinctrl_eqos: eqosgrp {
+ 		fsl,pins = <
+@@ -246,4 +253,10 @@ pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
+ 			MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19	0x40
+ 		>;
+ 	};
++
++	pinctrl_wdog: wdoggrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_GPIO1_IO02__WDOG1_WDOG_B	0xc6
++		>;
++	};
+ };
+-- 
+2.25.1
+

@@ -13,6 +13,7 @@ SRC_URI = " \
 	git://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git;branch=${SRCBRANCH};protocol=https \
 	file://0001-arm64-dts-freescale-Add-Engicam-i.Core-MX8M-Plus-C.T.patch \
 	file://0002-dt-bindings-arm-fsl-Add-Engicam-i.Core-MX8M-Plus-C.T.patch \
+	file://0003-arm64-dts-imx8mp-icore-Enable-wdog1-node.patch \
 	file://defconfig \
 	"
 
