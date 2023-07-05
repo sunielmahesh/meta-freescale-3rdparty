@@ -1,5 +1,3 @@
-SRC_URI:remove = "file://emmcsetup.lua"
-
 # images to build before building swupdate image
 IMAGE_DEPENDS = "fsl-image-multimedia-full"
 
