@@ -16,6 +16,7 @@ SRC_URI = " \
 	file://0002-arm64-dts-Enable-wdog1.patch \
 	file://0003-configs-icoremx8mp-Enable-bootcount.patch \
         file://0004-disable-wdt-and-add-env.patch \
+	file://0005-configs-imx8mp-icore-Change-boot-count-register-and-.patch \
 	"
 
 S = "${WORKDIR}/git"
